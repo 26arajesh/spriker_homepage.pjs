@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Team Spriker Homepage!</title> 
+</head>
+ <body>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        /*
+JUDGES READ ALL OF THIS PLEASE!
+This is my entry for challenge 0. I am a level 2 programmer.
+Navigate the program using the buttons!
+This might have some bugs, but this is the first program that I have made that has scene change and buttons.
+
+One bug that I am yet to fix is that when you are in the subpages, the buttons on the home page is invisible and can be clicked on. I hope that this not affect my socre!
+
+Go team Spriker!
+
+I implemented ʆ Ĩ⩜ϻ the cool dude's code for the avatars that are scattered 
+throughout the program.
+Here is the link to that:
+https://www.khanacademy.org/computer-programming/sprikeravatar/6678308474404864
+
+Thanks to Timothy for making a program on how to make scene changes!
+Here is the link to that:
+https://www.khanacademy.org/computer-programming/how-to-do-scene-changes/5761574507528192
+
+I used Khan Academy's tutorial on how to make buttons.
+Here is the link to that:
+https://www.khanacademy.org/computing/computer-programming/programming-games-visualizations/programming-buttons/a/a-button-function
+
+I took some of Brutal Ninja's code and tweaked it a bit to make my backgrounds. Thanks Brutal Ninja! I learned a thing or two about for loops from reading your program!
+Here is the link to his program:
+https://www.khanacademy.org/computer-programming/brisingr-homepage/6015601062002688
+
+And thats all!
+Happy coding!
+*/
+
+
+
+//The variables
+var btn1 = {
+    x: 19,
+    y: 120,
+    width: 150,
+    height: 50
+};
+var btn2 = {
+    x: 19,
+    y: 212,
+    width: 150,
+    height: 50
+};
+var btn3 = {
+    x: 19,
+    y: 304,
+    width: 150,
+    height: 50
+};
+var btn1r = {
+x:30,
+y:335,
+width:150,
+height:50
+};
+var scene = 1;
+var c = createFont("Matura MT Script Capitals");
+var slam = 426;
+var r = 0;
+var g = 0;
+var b = 0;
+var myStrokeWeight = 3;
+var d = 0;
+
+
+
+//The Functions
+var drawButton = function(btn) {
+    fill(0, 234, 255);
+    rect(btn.x, btn.y, btn.width, btn.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text("About Our Team", btn.x+8, btn.y+btn.height/4);
+};
+
+
+var drawButton1 = function(btn) {
+    fill(0, 234, 255);
+    rect(btn.x, btn.y, btn.width, btn.height, 5);
+    fill(0, 0, 0);
+    textSize(16);
+    textAlign(LEFT, TOP);
+    text("Our Team Members", btn.x+5, btn.y+btn.height/4);
+};   
+
+
+var drawButton2 = function(btn) {
+    fill(0, 234, 255);
+    rect(btn.x, btn.y, btn.width, btn.height, 5);
+    fill(0, 0, 0);
+    textSize(16);
+    textAlign(LEFT, TOP);
+    text("Our Entries", btn.x+30, btn.y+btn.height/4);
+};
+
+
+var drawButtonR = function(btn) {
+
+    fill(0, 234, 255);
+    rect(btn.x, btn.y, btn.width, btn.height, 5);
+    fill(0, 0, 0);
+    textSize(16);
+    textAlign(LEFT, TOP);
+    text("Return Home", btn.x+30, btn.y+btn.height/4);
+
+};
+
+
+var isMouseInside = function(btn) {
+    return (mouseX >= btn.x &&
+                mouseX <= (btn.x+btn.width) &&
+                mouseY >= btn.y && 
+                mouseY <= (btn.y+btn.height));
+};
+
+
+var avatar2 = function(x,y,s){
+    pushMatrix();
+    rotate(-3);
+    translate(x,y);
+    scale(s);
+    
+    noStroke();
+    
+    fill(237, 14, 88);
+    beginShape();
+    curveVertex(300,119);
+    
+    curveVertex(144,210);
+    curveVertex(146,125);
+    
+    
+    curveVertex(190,87);
+    curveVertex(155,91);
+    curveVertex(128,109);
+    curveVertex(99,130);
+    
+    curveVertex(61,168);
+    curveVertex(53,219);
+    
+    
+    
+    curveVertex(83,266);
+    curveVertex(242,444);
+    
+    
+    endShape();
+    
+    fill(204, 12, 76);
+    beginShape();
+    curveVertex(-25,85);
+    curveVertex(79,252);
+    curveVertex(46,344);
+    curveVertex(41,396);
+    curveVertex(73,427);
+    curveVertex(115,433);
+    curveVertex(144,413);
+    curveVertex(159,372);
+    curveVertex(145,331);
+    curveVertex(90,275);
+    curveVertex(159,239);
+    curveVertex(147,162);
+    curveVertex(180,98);
+    curveVertex(208,105);
+    
+    
+    curveVertex(171,88);
+    curveVertex(86,182);
+    curveVertex(85,258);
+    curveVertex(27,24);
+    
+    
+    
+    
+    endShape();
+    
+    fill(237, 14, 88);
+    beginShape();
+    curveVertex(-13,85);
+    curveVertex(82,252);
+    curveVertex(39,356);
+    curveVertex(47,399);
+    curveVertex(76,422);
+    curveVertex(105,425);
+    curveVertex(130,411);
+    curveVertex(143,376);
+    curveVertex(130,333);
+    curveVertex(82,253);
+    curveVertex(82,18);
+    
+    
+    
+    
+    endShape();
+    
+    //legs
+    pushMatrix();
+    rotate(48);
+    
+    fill(237, 14, 88);
+    ellipse(410,184,25,50);
+    
+    fill(204, 12, 76);
+    ellipse(411.8,194,18,36);
+    popMatrix();
+    pushMatrix();
+    rotate(12);
+    
+    fill(237, 14, 88);
+    ellipse(138,417,49,24);
+    
+    fill(204, 12, 76);
+    ellipse(143,417,34,18);
+    popMatrix();
+    
+    
+    //eyes
+    fill(0, 0, 0);
+    
+    ellipse(66,388,12,20);
+    ellipse(107,383,12,20);
+    fill(255, 255, 255);
+    
+    ellipse(66,384,5,5);
+    ellipse(107,379,5,5);
+    popMatrix();
+
+
+};
+
+
+var avatar3 = function(x,y,s){
+    pushMatrix();
+    scale(s);
+    translate(x,y);
+    noStroke();
+    //feet
+    fill(222, 9, 87);
+    beginShape();
+    curveVertex(248,479);
+    curveVertex(346,385);
+    curveVertex(287,417);
+    
+    curveVertex(291,387);
+    
+    
+    
+    curveVertex(315,399);
+    curveVertex(120,626);
+    
+    
+    
+    
+    
+    
+    endShape();
+    
+    beginShape();
+    curveVertex(255,479);
+    curveVertex(337,385);
+    curveVertex(365,406);
+    curveVertex(360,424);
+    curveVertex(328,395);
+    
+    
+    
+    curveVertex(315,367);
+    curveVertex(120,626);
+    
+    
+    
+    
+    
+    
+    endShape();
+    
+    
+    
+    //body
+    pushMatrix();
+    rotate(6);
+    
+    
+    fill(222, 9, 87);
+    ellipse(365,302,105,130);
+    fill(237, 14, 88);
+    ellipse(365,324,71,76);
+    
+    
+    
+    
+    popMatrix();
+    
+    
+    
+    
+    
+    
+    //little frill
+    strokeWeight(4);
+    strokeWeight(SQUARE);
+    stroke(255, 64, 0);
+    triangle(257,329,321,290,272,303);
+    triangle(302,345,326,290,290,303);
+    
+    triangle(372,337,336,290,304,303);
+    triangle(405,327,363,290,326,303);
+    noStroke();
+    
+    
+    //head
+    fill(237, 14, 88);
+    beginShape();
+    curveVertex(627,83);
+    curveVertex(376,299);
+    curveVertex(368,311);
+    
+    curveVertex(366,306);
+    
+    
+    curveVertex(328,311);
+    curveVertex(316,318);
+    
+    curveVertex(300,309);
+    curveVertex(270,307);
+    curveVertex(264,259);
+    
+    
+    curveVertex(334,234);
+    
+    
+    
+    
+    
+    
+    curveVertex(386,262);
+    curveVertex(494,511);
+    
+    
+    endShape();
+    
+    //eyeballs...
+    pushMatrix();
+    translate(-1,-4);
+    fill(0);
+    ellipse(291,280,14,24);
+    ellipse(338,280,14,24);
+    
+    fill(255, 255, 255);
+    ellipse(291,276,5,5);
+    ellipse(338,276,5,5);
+    
+    
+    
+    popMatrix();
+    
+    
+    //eyebrow
+    pushMatrix();
+    scale(0.64,0.75);
+    translate(218,33);
+    rotate(9);
+    
+    
+    fill(237, 14, 88);
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    
+    beginShape();
+    curveVertex(130,319);
+    curveVertex(315,229);
+    
+    curveVertex(405,215);
+    
+    curveVertex(476,238);
+    
+    curveVertex(423,231);
+    curveVertex(471,284);
+    
+    
+    
+    
+    curveVertex(419,252);
+    curveVertex(387,238);
+    curveVertex(339,261);
+    curveVertex(308,224);
+    
+    curveVertex(310,196);
+    curveVertex(323,225);
+    
+    curveVertex(466,362);
+    
+    
+    
+    
+    endShape();
+    //shading on eyebrow
+    noStroke();
+    fill(204, 12, 76);
+    beginShape();
+    vertex(320,249);
+    
+    vertex(348,240);
+    
+    vertex(364,235);
+    vertex(383,233);
+    vertex(415,243);
+    
+    vertex(455,274);
+    
+    vertex(422,259);
+    vertex(375,249);
+    
+    vertex(335,264);
+    
+    
+    endShape();
+    popMatrix();
+    
+    
+    pushMatrix();
+    
+    scale(-0.42,0.61);
+    translate(-768,3);
+    rotate(41);
+    //eyebrow
+    fill(237, 14, 88);
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    
+    beginShape();
+    curveVertex(165,319);
+    curveVertex(315,229);
+    
+    curveVertex(385,215);
+    
+    curveVertex(451,232);
+    
+    curveVertex(477,233);
+    
+    curveVertex(430,254);
+    
+    curveVertex(442,286);
+    curveVertex(387,238);
+    curveVertex(320,263);
+    curveVertex(299,225);
+    
+    curveVertex(318,198);
+    
+    curveVertex(319,231);
+    
+    
+    curveVertex(488,362);
+    
+    
+    
+    
+    endShape();
+    //shading on eyebrow
+    noStroke();
+    fill(204, 12, 76);
+    beginShape();
+    vertex(382,261);
+    vertex(314,264);
+    vertex(351,237);
+    
+    vertex(373,229);
+    
+    vertex(394,230);
+    vertex(416,242);
+    vertex(422,259);
+    vertex(402,251);
+    
+    vertex(335,265);
+    
+    
+    endShape();
+    popMatrix();
+    
+    
+    //tiny beak
+    
+    pushMatrix();
+    scale(0.9,0.9);
+    translate(41,17);
+    
+    fill(173, 14, 67);
+    beginShape();
+    vertex(311,330);
+    vertex(335,320);
+    
+    
+    vertex(311,307);
+    
+    vertex(319,315);
+    vertex(308,296);
+    
+    vertex(299,302);
+    
+    
+    vertex(292,309);
+    vertex(290,309);
+    
+    vertex(277,307);
+    vertex(280,321);
+    vertex(296,348);
+    
+    
+    
+    
+    endShape();
+    popMatrix();
+    //hands
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    fill(222, 9, 87);
+    
+    beginShape();
+    curveVertex(321,360);
+    curveVertex(284,325);
+    curveVertex(263,371);
+    curveVertex(275,367);
+    
+    curveVertex(279,374);
+    curveVertex(287,338);
+    
+    curveVertex(298,466);
+    
+    
+    endShape();
+    
+    pushMatrix();
+    
+    scale(-1,1);
+    translate(-658,2);
+    
+    beginShape();
+    curveVertex(321,360);
+    curveVertex(284,325);
+    curveVertex(263,371);
+    curveVertex(275,362);
+    
+    curveVertex(280,374);
+    curveVertex(288,346);
+    
+    curveVertex(299,495);
+    
+    
+    endShape();
+    
+    popMatrix();
+    
+    
+    
+    
+    popMatrix();
+};
+
+
+var avatar4 = function(x,y,s){
+    pushMatrix();
+    translate(x,y);
+    scale(s);
+    noStroke();
+    fill(222, 9, 87);
+    ellipse(198,279,124,170);
+    
+    fill(237, 14, 88);
+    ellipse(196,298,95,111);
+    //little frill
+    strokeWeight(4);
+    strokeWeight(SQUARE);
+    stroke(255, 64, 0);
+    triangle(193,217,192,152,228,241);
+    triangle(258,232,229,186,220,217);
+    triangle(132,243,179,186,220,217);
+    
+    
+    noStroke();
+    //head
+    beginShape();
+    curveVertex(211,626);
+    curveVertex(239,200);
+    curveVertex(127,163);
+    curveVertex(148,224);
+    
+    curveVertex(259,201);
+    curveVertex(240,119);
+    
+    
+    curveVertex(177,131);
+    
+    
+    curveVertex(120,170);
+    curveVertex(192,513);
+    
+    endShape();
+    //little beak
+    fill(173, 14, 67);
+    beginShape();
+    vertex(153,219);
+    vertex(168,200);
+    vertex(185,214);
+    vertex(197,221);
+    
+    
+    vertex(207,222);
+    
+    vertex(186,231);
+    
+    vertex(170,249);
+    
+    vertex(152,235);
+    vertex(150,232);
+    
+    
+    vertex(141,218);
+    
+    
+    endShape();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //little eyes!
+    fill(0, 0, 0);
+    ellipse(149,193,15,24);
+    ellipse(191,189,15,24);
+    
+    fill(255, 255, 255);
+    ellipse(149,190,5,5);
+    ellipse(191,186,5,5);
+    //huge eyebrows
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    
+    fill(237, 14, 88);
+    
+    
+    beginShape();
+    curveVertex(70,90);
+    curveVertex(177,172);
+    
+    curveVertex(253,144);
+    curveVertex(279,147);
+    curveVertex(257,124);
+    curveVertex(278,128);
+    curveVertex(256,115);
+    
+    curveVertex(228,135);
+    curveVertex(207,140);
+    
+    
+    curveVertex(187,155);
+    curveVertex(179,149);
+    curveVertex(174,168);
+    
+    curveVertex(25,76);
+    
+    endShape();
+    pushMatrix();
+    translate(349,0);
+    scale(-1,1);
+    beginShape();
+    curveVertex(70,90);
+    curveVertex(177,179);
+    
+    curveVertex(253,144);
+    curveVertex(279,147);
+    curveVertex(257,124);
+    curveVertex(278,128);
+    curveVertex(256,115);
+    
+    curveVertex(228,135);
+    curveVertex(215,140);
+    
+    
+    curveVertex(187,162);
+    curveVertex(179,158);
+    curveVertex(174,176);
+    
+    curveVertex(43,114);
+    
+    
+    
+    
+    
+    
+    endShape();
+    popMatrix();
+    //shading on eyebrows
+    noStroke();
+    fill(204, 12, 76);
+    beginShape();
+    
+    vertex(80,137);
+    vertex(122,146);
+    vertex(129,150);
+    
+    vertex(139,162);
+    vertex(146,166);
+    
+    vertex(170,166);
+    vertex(168,179);
+    vertex(144,177);
+    vertex(105,151);
+    
+    
+    
+    endShape();
+    
+    beginShape();
+    
+    vertex(265,131);
+    vertex(272,145);
+    
+    vertex(251,146);
+    vertex(203,170);
+    vertex(184,174);
+    vertex(191,161);
+    
+    
+    
+    
+    endShape();
+    
+    //little hands
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    fill(222, 9, 87);
+    
+    beginShape();
+    curveVertex(73,168);
+    curveVertex(139,273);
+    
+    
+    curveVertex(165,290);
+    curveVertex(192,294);
+    
+    
+    curveVertex(183,284);
+    curveVertex(200,278);
+    
+    
+    curveVertex(145,241);
+    curveVertex(282,62);
+    
+    
+    
+    
+    endShape();
+    pushMatrix();
+    scale(-1,1);
+    translate(-408,0);
+    beginShape();
+    curveVertex(112,168);
+    curveVertex(150,273);
+    
+    
+    curveVertex(177,290);
+    curveVertex(192,292);
+    
+    
+    curveVertex(184,284);
+    curveVertex(200,278);
+    
+    
+    curveVertex(156,240);
+    curveVertex(282,62);
+    
+    
+    
+    
+    endShape();
+    
+    popMatrix();
+    //legs,tail,and stuff
+    noStroke();
+    fill(222, 9, 87);
+    beginShape();
+    
+    
+    curveVertex(370,445);
+    curveVertex(254,304);
+    
+    curveVertex(267,298);
+    curveVertex(290,286);
+    curveVertex(286,291);
+    curveVertex(244,336);
+    curveVertex(235,374);
+    curveVertex(199,379);
+    curveVertex(217,355);
+    
+    
+    curveVertex(50,551);
+    
+    
+    endShape();
+    
+    beginShape();
+    
+    curveVertex(290,286);
+    curveVertex(169,349);
+    curveVertex(157,375);
+    
+    
+    curveVertex(222,359);
+    curveVertex(235,374);
+    
+    
+    endShape();
+    
+    
+    popMatrix();
+};
+
+
+var avatar5 = function(x,y,s){
+    noStroke();
+    
+    pushMatrix();
+    translate(x,y);
+    scale(s);
+    fill(201, 14, 76);
+    //leg
+    beginShape();
+    curveVertex(34,435);
+    curveVertex(442,435);
+    
+    curveVertex(409,519);
+    curveVertex(456,514);
+    curveVertex(475,435);
+    
+    
+    curveVertex(0,80);
+    
+    
+    endShape();
+    
+    fill(222, 9, 87);
+    //body
+    beginShape();
+    curveVertex(605,838);
+    curveVertex(483,299);
+    curveVertex(367,343);
+    curveVertex(410,468);
+    
+    
+    curveVertex(440,496);
+    curveVertex(467,496);
+    curveVertex(440,529);
+    curveVertex(496,525);
+    
+    curveVertex(511,489);
+    curveVertex(539,452);
+    curveVertex(563,371);
+    
+    curveVertex(594,367);
+    curveVertex(557,359);
+    
+    curveVertex(509,409);
+    
+    curveVertex(478,296);
+    
+    curveVertex(481,446);
+    
+    
+    endShape();
+    
+    noStroke();
+    pushMatrix();
+    fill(237, 14, 88);
+    rotate(-28);
+    ellipse(169,579,70,125);
+    popMatrix();
+    
+    //frill
+    
+    
+    strokeWeight(4);
+    strokeWeight(SQUARE);
+    stroke(255, 64, 0);
+    triangle(447,367,451,318,418,331);
+    triangle(494,358,431,318,450,245);
+    triangle(406,370,438,307,381,245);
+    triangle(375,370,415,307,388,245);
+    triangle(530,345,429,307,388,245);
+    
+    
+    noStroke();
+    //head
+    fill(237, 14, 88);
+    beginShape();
+    curveVertex(607,569);
+    curveVertex(493,234);
+    curveVertex(488,176);
+    curveVertex(462,180);
+    curveVertex(444,223);
+    
+    
+    
+    curveVertex(403,226);
+    curveVertex(378,184);
+    curveVertex(354,181);
+    curveVertex(372,216);
+    curveVertex(367,283);
+    curveVertex(371,315);
+    curveVertex(406,352);
+    curveVertex(425,337);
+    
+    
+    curveVertex(510,309);
+    curveVertex(490,228);
+    curveVertex(458,232);
+    
+    
+    curveVertex(426,821);
+    
+    
+    endShape();
+    
+    //beak
+    fill(173, 14, 67);
+    beginShape();
+    vertex(379,303);
+    vertex(395,300);
+    vertex(419,315);
+    vertex(464,322);
+    vertex(440,330);
+    
+    vertex(415,343);
+    vertex(410,353);
+    
+    vertex(379,328);
+    vertex(368,308);
+    vertex(366,292);
+    
+    endShape();
+    //eyes
+    fill(0, 0, 0);
+    
+    ellipse(379,283,12,22);
+    ellipse(422,287,12,22);
+    fill(255, 255, 255);
+    
+    ellipse(379,279,5.5,5.5);
+    ellipse(422,283,6,6);
+    //arms
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    fill(222, 9, 87);
+    
+    beginShape();
+    curveVertex(89,116);
+    curveVertex(491,356);
+    curveVertex(467,438);
+    curveVertex(463,453);
+    
+    curveVertex(451,445);
+    curveVertex(442,453);
+    
+    
+    curveVertex(444,419);
+    
+    curveVertex(464,375);
+    
+    
+    curveVertex(337,271);
+    
+    
+    
+    
+    endShape();
+    beginShape();
+    curveVertex(467,198);
+    curveVertex(367,347);
+    curveVertex(359,406);
+    curveVertex(399,461);
+    curveVertex(403,450);
+    curveVertex(422,454);
+    curveVertex(409,443);
+    
+    
+    curveVertex(402,439);
+    curveVertex(385,418);
+    curveVertex(388,389);
+    curveVertex(505,325);
+    
+    
+    
+    
+    
+    endShape();
+    
+    //huge eyebrows
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    translate(228,104);
+    
+    fill(237, 14, 88);
+    
+    beginShape();
+    curveVertex(70,90);
+    curveVertex(177,172);
+    
+    curveVertex(226,151);
+    curveVertex(241,129);
+    curveVertex(265,131);
+    
+    curveVertex(257,124);
+    curveVertex(278,115);
+    curveVertex(256,115);
+    
+    curveVertex(254,117);
+    curveVertex(260,108);
+    curveVertex(272,97);
+    
+    curveVertex(229,117);
+    curveVertex(207,140);
+    
+    
+    curveVertex(187,152);
+    curveVertex(179,149);
+    curveVertex(177,170);
+    
+    curveVertex(25,79);
+    
+    endShape();
+    
+    pushMatrix();
+    scale(-1,1);
+    translate(-351,0);
+    beginShape();
+    curveVertex(70,90);
+    curveVertex(172,173);
+    
+    curveVertex(208,160);
+    curveVertex(217,164);
+    
+    
+    
+    curveVertex(211,169);
+    
+    
+    
+    curveVertex(223,158);
+    curveVertex(220,150);
+    
+    curveVertex(212,133);
+    curveVertex(209,129);
+    
+    
+    curveVertex(207,143);
+    
+    
+    curveVertex(185,152);
+    curveVertex(179,146);
+    curveVertex(170,170);
+    
+    curveVertex(25,79);
+    
+    endShape();
+    
+    popMatrix();
+    
+    
+    //shading stuff
+    noStroke();
+    fill(204, 12, 76);
+    beginShape();
+    vertex(207,170);
+    vertex(185,176);
+    
+    vertex(186,167);
+    vertex(228,139);
+    vertex(243,123);
+    vertex(261,123);
+    
+    
+    vertex(240,134);
+    
+    
+    vertex(229,145);
+    
+    
+    
+    
+    
+    endShape();
+    
+    beginShape();
+    vertex(167,176);
+    vertex(148,166);
+    
+    
+    
+    vertex(147,163);
+    vertex(135,159);
+    vertex(145,154);
+    vertex(168,165);
+    
+    
+    
+    
+    
+    endShape();
+    
+    fill(204, 12, 76);
+    beginShape();
+    curveVertex(313,33);
+    curveVertex(282,358);
+    curveVertex(281,362);
+    
+    
+    
+    
+    curveVertex(266,415);
+    curveVertex(271,415);
+    curveVertex(285,385);
+    
+    
+    curveVertex(308,357);
+    curveVertex(313,334);
+    
+    
+    curveVertex(329,274);
+    curveVertex(307,328);
+    curveVertex(325,322);
+    
+    
+    
+    endShape();
+    strokeWeight(3);
+    stroke(173, 14, 67);
+    noFill();
+    arc(149,121,31,-69,65,130);
+    arc(155,136,32,-69,65,130);
+    
+    arc(246,112,48,-69,65,130);
+    arc(244,133,53,-69,65,130);
+    
+    
+    
+    popMatrix();
+
+
+
+
+};
+
+
+var scene1 = function() {
+    background(255, 130, 251);
+    noStroke();
+    for(var tx=-223; tx<518; tx+=50){
+        for(var ty=25; ty<599; ty+=53){    
+            fill(150, 10, 10,(tx+ty/2)/3.9);
+            rect(tx,ty,30,30);
+            translate(0,d);
+            fill(0, 0, 0);
+        }
+    }   
+    fill(0, 0, 0);
+    noStroke(); 
+    textSize(30);
+    text("Team Spriker Home Page!", 28,62);
+    textSize(20);
+    drawButton(btn1);
+    drawButton1(btn2);
+    drawButton2(btn3);
+    avatar5(163,105,0.30);
+//this draws everything:
+    draw = function() {
+        
+
+    };
+};//scene 1
+
+
+var scene2 = function() {
+    background(130, 255, 255);
+    noStroke();
+    for(var tx=-223; tx<518; tx+=50){
+        for(var ty=25; ty<599; ty+=53){    
+            fill(150, 10, 10,(tx+ty/2)/3.9);
+            rect(tx,ty,30,30);
+            translate(0,d);
+            fill(0, 0, 0);
+        }
+    }
+    textSize(40);
+    text("About Our Team",51,18);
+    textSize(15);
+    text("Welcome to Spriker's team page! This is where our team\ninformation will be displayed, where you can check out \nour members, and the place where you can check out our\nproject contest entries! Press on the buttons on the home\nscreen to navigate!",15, 81);
+    textSize(30);
+    text("Go team Spriker!!!",77,274);
+    drawButtonR(btn1r);
+    avatar4(151,146,0.30); // good
+};//scene 2
+
+
+var scene3 = function() {
+    background(130, 255, 155);
+    noStroke();
+    for(var tx=-223; tx<518; tx+=50){
+        for(var ty=25; ty<599; ty+=53){    
+            fill(150, 10, 10,(tx+ty/2)/3.9);
+            rect(tx,ty,30,30);
+            translate(0,d);
+            fill(0, 0, 0);
+        }
+    }    
+    textSize(30);
+    text("Members", 125, 34);
+    textSize(13);
+    text("1. LaimTheCoolDude: Level 2  \n2.Tanmay Natani: Level 3 \n3.nightwaves: Level 0 \n4.SeguidorOfGod: Level 2 \n5. homeschoolg wolf: Level 2 \n6. Todd Gack: Level 3 \n7.Thisismy Realname: Level 1\n8.Yixsor: Level 1\n9.Stephen: Level 2\n10.Melody: Level 0\n11.TheMoneyLord: Level 2\n12.π Coder: Level 1\n13.monstermaster: Level 2\n14. 26arajesh_codes: Level 2.5 ",17,111);
+    text("15. IDK HowToLive: Level 1\n16. Mr. JS: Level 4\n17. Pro Programmer: Level 2\n18. Emilee C.: Level 1\n19. heal01: Level 2\n20. SledgeHammer Productions: Level 2\n21. Roland Millier: Level 3\n22. Beplo!? Studios: Level 1\n23. StuffyNose: Level 4\n24. Nerdy Nerd Girl: Level 0\n25. ӨMΛЯ#Arise: Level 2\n26. Zushah: Level 4\n27. mushy avacado the 2nd: \nLevel 2\n28. Major George Vartar Vincent \nBerry: Level 1\n29. Akbaba©: Level 3\n30. Little Moose :Level 4" ,210,99);
+    drawButtonR(btn1r);
+    avatar2(319,1,0.25);
+};//scene 3
+
+
+var scene4 = function() {
+    background(255, 249, 130);
+    noStroke();
+    for(var tx=-223; tx<518; tx+=50){
+        for(var ty=25; ty<599; ty+=53){    
+            fill(150, 10, 10,(tx+ty/2)/3.9);
+            rect(tx,ty,30,30);
+        translate(0,d);
+        fill(0, 0, 0);
+        }
+    }    
+    textSize(30);    
+    text("Our Team's Entries",72,45);
+    textSize(15);
+    text("Our team's entries will be here.",99,121);
+    drawButtonR(btn1r);
+    avatar3(375,452,0.30);
+};//scene 4
+
+
+scene1(); //calling scene 1
+
+
+mouseClicked = function() {
+    if (isMouseInside(btn1)){
+        scene2();   
+    } else if (isMouseInside(btn2)){
+        scene3();   
+    } else if (isMouseInside(btn3)){
+        scene4();
+    }
+    
+    if(isMouseInside(btn1r)){
+        scene1();
+    }
+    
+};//the mouseClicked function to make the buttons work
+
+
+
+
+
+
+
+
+/*
+Personal Checklist for me:
+LiamTheCoolDude: Level 2 ✔
+Tanmay Natani: Level 3 ✔
+nightwaves: Level 0 ✔
+SeguidorOfGod: Level 2 ✔
+homeschoolg wolf: Level 2 ✔
+Todd Gack: Level 3 ✔
+Thisismy Realname: Level 1 ✔
+Yixsor: Level 1 ✔
+Stephen: Level 2 ✔
+Melody: Level 0 ✔
+TheMoneyLord: Level 2 ✔
+πCoder: Level 1 ✔
+monstermaster: Level 2 ✔
+26arajesh_codes: Level 2.5 ✔
+IDK HowToLive: Level 1 ✔
+Mr.JS : Level 4 ✔
+Pro Programmer: Level 2 ✔
+Emilee C.: Level 1 ✔
+heal01: Level 2 ✔
+SledgeHammer Productions: Level 2 ✔
+Roland Millier: Level 3 ✔
+Beplo!? Studios: Level 1 ✔
+StuffyNose: Level 4 ✔
+Nerdy Nerd Girl: Level 0 ✔
+ӨMΛЯ#Arise: Level 2 ✔
+Zushah: Level 4 ✔
+mushy avocado the 2nd: Level 2 ✔
+Major George Vartar Vincent Berry: Level 1 ✔
+Akbaba©: Level 3 ✔
+𝐋𝐢𝐭𝐭𝐥𝐞𝐌𝐨𝐨𝐬𝐞 :Level 4 ✔
+*/
+
+
+
+/*
+Avatars Adjusted The Way I Like It:
+
+ avatar1(7,-24,0.71 - 0.2);
+    
+    avatar2(218,33,1.05 - 0.2);
+    
+    avatar3(-233,347,1.20 - 0.2);//okay still on screen
+    avatar4(136,445,1.15 - 0.2); // good
+    avatar5(90,73,1.32 - 0.2);//good
+*/
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
